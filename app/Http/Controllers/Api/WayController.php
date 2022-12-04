@@ -42,8 +42,7 @@ class WayController extends Controller
 
     public function getBusWays(Bus $bus)
     {
-        $ways = $bus->ways;
-
+        $ways = $bus->ways()->get();
         return response()->json($ways);
     }
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BusController;
 use App\Http\Controllers\Api\PointController;
+use App\Http\Controllers\Api\SuggestionController;
 use App\Http\Controllers\Api\TimeController;
 use App\Http\Controllers\Api\WayController;
 use Illuminate\Http\Request;
@@ -32,5 +33,7 @@ Route::group(['middleware' => ['auth:sanctum']], static function () {
     Route::get('/buses', [BusController::class, 'index']);
     Route::get('/buses/{bus}', [BusController::class, 'show']);
     Route::delete('/buses/{bus}', [BusController::class, 'delete']);
-    Route::get('/buses/{bus}/way', [BusController::class, 'getBusWays']);
+    Route::post('/suggestions', [SuggestionController::class, 'store']);
+    Route::post('/suggestions/{suggestion}/vote-up', [SuggestionController::class, 'voteUp']);
+    Route::post('/suggestions/{suggestion}/vote-down', [SuggestionController::class, 'voteDown']);
 });
